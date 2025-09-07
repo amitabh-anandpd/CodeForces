@@ -8,25 +8,23 @@ import java.io.BufferedReader;
 
 import java.util.InputMismatchException;
 
-public class Main {
+public class MaxEvenSum {
     public static void main(String args[])throws IOException {
         BfReader obj = new BfReader(System.in);
         FastPrinter out = new FastPrinter(System.out);
         int tests = obj.readInt();
+        obj.readLine();
         for(int i = 0; i < tests; i++){
-            int n = obj.readInt();
-            int a[] = new int[n];
-            int b[] = new int[n];
-            for(int j = 0; j < n; j++) a[j] = obj.readInt();
-            for(int j = 0; j < n; j++) b[j] = obj.readInt();
-            for(int j = 1; j <= n; j++){
-                for(int k = 0; k <= n-j; k++){
-                    int max = Integer.MIN_VALUE;
-                    for(int l = k; l < k+j; l++){
-                        max = (int)Math.max(max, a[l]);
-                    }
-                }
+            String[] s = (obj.readLine()).split(" ");
+            long a = Long.parseLong(s[0]);
+            long b = Long.parseLong(s[1]);
+            long max = -1;
+            for(long j = b; j <= 1; j--){
+                if(b%j!=0) continue;
+                if(((b/j)+(j*a))%2!=0) continue;
+                max = Math.max(((b/j)+(j*a)), max);
             }
+            out.println(max);
         }
         out.close();
     }

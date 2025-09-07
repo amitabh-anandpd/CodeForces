@@ -8,25 +8,28 @@ import java.io.BufferedReader;
 
 import java.util.InputMismatchException;
 
-public class Main {
+public class CollatzConjecture {
     public static void main(String args[])throws IOException {
         BfReader obj = new BfReader(System.in);
         FastPrinter out = new FastPrinter(System.out);
         int tests = obj.readInt();
         for(int i = 0; i < tests; i++){
-            int n = obj.readInt();
-            int a[] = new int[n];
-            int b[] = new int[n];
-            for(int j = 0; j < n; j++) a[j] = obj.readInt();
-            for(int j = 0; j < n; j++) b[j] = obj.readInt();
-            for(int j = 1; j <= n; j++){
-                for(int k = 0; k <= n-j; k++){
-                    int max = Integer.MIN_VALUE;
-                    for(int l = k; l < k+j; l++){
-                        max = (int)Math.max(max, a[l]);
-                    }
-                }
+            int k = obj.readInt();
+            long x = (long)obj.readInt();
+            int j;
+            if(x%2==0) j = 0;
+            else{
+                j = 1;
+                x = 2 * x;
             }
+            for(; j < k; j++){
+                if((x-1)!=0 && (x-1)%3==0 && ((x-1)/3)%2!=0){
+                    x = (x - 1)/3;
+                    continue;
+                }
+                x = x * 2;
+            }
+            out.println(x);
         }
         out.close();
     }

@@ -8,25 +8,23 @@ import java.io.BufferedReader;
 
 import java.util.InputMismatchException;
 
-public class Main {
+public class FunPermutation {
     public static void main(String args[])throws IOException {
         BfReader obj = new BfReader(System.in);
         FastPrinter out = new FastPrinter(System.out);
         int tests = obj.readInt();
         for(int i = 0; i < tests; i++){
             int n = obj.readInt();
-            int a[] = new int[n];
-            int b[] = new int[n];
-            for(int j = 0; j < n; j++) a[j] = obj.readInt();
-            for(int j = 0; j < n; j++) b[j] = obj.readInt();
-            for(int j = 1; j <= n; j++){
-                for(int k = 0; k <= n-j; k++){
-                    int max = Integer.MIN_VALUE;
-                    for(int l = k; l < k+j; l++){
-                        max = (int)Math.max(max, a[l]);
-                    }
-                }
+            obj.readLine();
+            String[] arr = obj.readLine().split(" ");
+            int[] a = new int[n];
+            int[] b = new int[n];
+            for(int j = 0; j < n; j++){
+                a[j] = Integer.parseInt(arr[j]);
+                b[j] = n-a[j]+1;
+                out.print(b[j]+" ");
             }
+            out.println();
         }
         out.close();
     }
