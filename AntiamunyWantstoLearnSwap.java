@@ -39,7 +39,7 @@ public class AntiamunyWantstoLearnSwap {
             }
         }
         out.close();
-    }
+    } 
 
     //FastScanner and FastWriter implementation from SecondThread (codeforces)
     static class BfReader extends BufferedReader{
