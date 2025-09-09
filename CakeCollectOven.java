@@ -7,13 +7,47 @@ import java.io.Writer;
 import java.io.BufferedReader;
 
 import java.util.InputMismatchException;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 
-public class Main {
+public class CakeCollectOven {
     public static void main(String args[])throws IOException {
         BfReader obj = new BfReader(System.in);
         FastPrinter out = new FastPrinter(System.out);
         int tests = obj.readInt();
+        obj.readLine();
         for(int i = 0; i < tests; i++){
+            String[] st = obj.readLine().split(" ");
+            long n = Long.parseLong(st[0]);
+            long m = Long.parseLong(st[1]);
+            List<Long> a = new ArrayList<>();
+            String[] s = (obj.readLine()).split(" ");
+            long sum = 0L;
+            for(int j = 0; j < n; j++){
+                long num = Long.parseLong(s[j]);
+                a.add(num);
+                sum+=num;
+            }
+            if(n==1){
+                out.println(a.get(0)*m);
+                continue;
+            }
+            if(m>n){
+                sum = n * sum * ((m/n));
+            }
+            else sum = 0L;
+            int start = (int) ((int)(n - (m%n))%n);
+            Collections.sort(a);
+            for(int j = 0; j < m%n; j++){
+                sum += (j+1)*a.get(start);
+                start = (start+1)%(int)n;
+            }
+            for(int j = (int)(m%n); j < n; j++){
+                sum -= (n-(j+1)) * a.get(start);
+                start = (start+1)%(int)n;
+            }
+            out.println(sum);
         }
         out.close();
     }

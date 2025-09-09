@@ -8,12 +8,23 @@ import java.io.BufferedReader;
 
 import java.util.InputMismatchException;
 
-public class Main {
+public class MapleAndMultiplication {
     public static void main(String args[])throws IOException {
         BfReader obj = new BfReader(System.in);
         FastPrinter out = new FastPrinter(System.out);
         int tests = obj.readInt();
         for(int i = 0; i < tests; i++){
+            int a = obj.readInt();
+            int b = obj.readInt();
+            if(a==b){
+                out.println(0);
+                continue;
+            }
+            if(a%b==0 || b%a == 0){
+                out.println(1);
+                continue;
+            }
+            out.println(2);
         }
         out.close();
     }
