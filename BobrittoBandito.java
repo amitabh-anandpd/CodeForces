@@ -8,12 +8,26 @@ import java.io.BufferedReader;
 
 import java.util.InputMismatchException;
 
-public class Main {
+public class BobrittoBandito {
     public static void main(String args[])throws IOException {
         BfReader obj = new BfReader(System.in);
         FastPrinter out = new FastPrinter(System.out);
         int tests = obj.readInt();
         for(int i = 0; i < tests; i++){
+            int n = obj.readInt();
+            int m = obj.readInt();
+            int l = obj.readInt();
+            int r = obj.readInt();
+            m = n - m;
+            if(r>m){
+                r = r - m;
+            }
+            else{
+                l = l + (m - r);
+                r = 0;
+            }
+            out.println(l+" "+r);
+            
         }
         out.close();
     }
