@@ -13,7 +13,8 @@ public class base {
         BfReader obj = new BfReader(System.in);
         FastPrinter out = new FastPrinter(System.out);
         int tests = obj.readInt();
-        for(int i = 0; i < tests; i++){
+        while(tests-->0){
+            
         }
         out.close();
     }
