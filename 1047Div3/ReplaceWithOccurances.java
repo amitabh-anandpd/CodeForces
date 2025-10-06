@@ -7,26 +7,48 @@ import java.io.Writer;
 import java.io.BufferedReader;
 
 import java.util.InputMismatchException;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
 
-public class MaxEvenSum {
+public class ReplaceWithOccurances {
     public static void main(String args[])throws IOException {
         BfReader obj = new BfReader(System.in);
         FastPrinter out = new FastPrinter(System.out);
         int tests = obj.readInt();
-        obj.readLine();
         for(int i = 0; i < tests; i++){
-            String[] s = (obj.readLine()).split(" ");
-            long a = Long.parseLong(s[0]);
-            long b = Long.parseLong(s[1]);
-            long max = -1;
-            for(long j = b; j <= 1; j--){
-                if(b%j!=0) continue;
-                if(((b/j)+(j*a))%2!=0) continue;
-                max = Math.max(((b/j)+(j*a)), max);
+            int n = obj.readInt();
+            int[] b = new int[n];
+            HashMap<Integer, Integer> map = new HashMap<>();
+            for(int j = 0; j < n; j++){
+                int m = obj.readInt();
+                b[j] = m;
+                map.put(m, map.getOrDefault(m,0)+1);
             }
-            out.println(max);
+            
         }
         out.close();
+    }
+    static HashMap<Integer, Integer> sortByValue(HashMap<Integer, Integer> hm) {
+        List<Map.Entry<Integer, Integer> > list =
+               new LinkedList<Map.Entry<Integer, Integer> >(hm.entrySet());
+
+        Collections.sort(list, new Comparator<Map.Entry<Integer, Integer> >() {
+            public int compare(Map.Entry<Integer, Integer> o1, 
+                               Map.Entry<Integer, Integer> o2) {
+                return (o2.getValue()).compareTo(o1.getValue());
+            }
+        });
+        
+        HashMap<Integer, Integer> temp = new LinkedHashMap<Integer, Integer>();
+        for (Map.Entry<Integer, Integer> aa : list) {
+            temp.put(aa.getKey(), aa.getValue());
+        }
+        return temp;
     }
 
     //FastScanner and FastWriter implementation from SecondThread (codeforces)
